@@ -1,25 +1,19 @@
-# Sara Vieira — Hero v1
+# Sara Vieira — Hero
 
-Hero responsiva em HTML/CSS/JS. Escopo: primeira seção e faixa de transição. Próximas seções ainda não implementadas.
+Hero responsiva, somente primeira seção e faixa de transição. HTML/CSS/JS sem build. GitHub conectado à Vercel.
 
-## Fotografia
+## Retrato v2
 
-Imagem WebP de 2048 × 1152 enviada pelo usuário diretamente ao repositório. O CSS mostra os primeiros ~1014px horizontais, com proporção .88 e máscara nas bordas, ocultando os textos e CTA embutidos na metade direita da arte. Não há reconstrução de rosto no código. A imagem enviada difere da pose na prévia aprovada.
+assets/sara-retrato-v2.png: 1122 × 1402, tratamento por IA da imagem enviada pelo usuário, com remoção da composição gráfica, fundo escuro e restauração visual. Não é o arquivo fotográfico original; a fidelidade facial deve ser conferida pelo usuário. Proporções preservadas no CSS, sem ampliar uma pequena região da arte. Imagem e implementação anteriores preservadas no histórico Git.
+
+## Movimento
+
+GSAP 3.12.5 e ScrollTrigger via CDN. Fundo −20px, retrato −42px, frente −65px. Mobile: somente retrato −12px. prefers-reduced-motion desativa animações. Conteúdo visível sem GSAP.
 
 ## Publicação
 
-Site estático sem build, framework Other. Vercel deve usar a raiz do repositório. Prévia contém noindex; remover para lançamento definitivo.
-
-## Movimento e acessibilidade
-
-GSAP 3.12.5 + ScrollTrigger via CDN. Transform: fundo −20px, retrato −42px, frente −65px. Mobile: retrato −12px. Sem pin. prefers-reduced-motion desativa animações. Falha da CDN não esconde conteúdo. Dimensões reservadas para foto. Foco visível e link para pular ao conteúdo.
-
-Referência: https://gsap.com/docs/v3/GSAP/gsap.matchMedia/
-
-## Contato
-
-WhatsApp 55 48 99674-2029, da primeira referência do usuário. O telefone fictício da nova arte não foi usado. Links configurados; titularidade e entrega de mensagens não verificadas.
+Framework Other, raiz do repositório, sem build. noindex ativo durante desenvolvimento. WhatsApp da primeira referência: 55 48 99674-2029.
 
 ## Validação
 
-Imagem inspecionada e arquivo confirmado no GitHub. JavaScript passou por análise sintática. Ambiente local indisponível: testes visuais desktop/mobile, execução das animações, CLS e navegação por teclado permanecem pendentes.
+Imagem v2 inspecionada visualmente e JS verificado sintaticamente. Teste visual da página em navegador ainda indisponível. Avaliar fidelidade facial, CLS, enquadramento e fluidez em aparelho real. PNG cerca de 2.3 MB; futura otimização para WebP/AVIF recomendada quando houver processamento local disponível.
