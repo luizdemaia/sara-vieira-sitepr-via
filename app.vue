@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import portraitUrl from '~/assets/sara-retrato-v2.png'
 
-const menuOpen = ref(false)
 const whatsapp = 'https://wa.me/5548996742029'
 const booking = whatsapp + '?text=' + encodeURIComponent('Olá, Sara! Gostaria de agendar uma consulta.')
 const questions = [
@@ -21,7 +19,7 @@ useHead({
   title: 'Sara Vieira | Psicanalista Clínica e Hipnose',
   meta: [
     { name: 'description', content: 'Sara Vieira, psicanalista clínica. Um espaço de escuta e acolhimento, com atendimentos de psicanálise e hipnose, online e presenciais. Agende pelo WhatsApp.' },
-    { name: 'theme-color', content: '#120f0c' },
+    { name: 'theme-color', content: '#f4ebdd' },
     { name: 'robots', content: 'noindex,follow' },
     { property: 'og:title', content: 'Sara Vieira | Sua história merece um novo olhar' },
     { property: 'og:description', content: 'Psicanálise clínica e hipnose. Um encontro com a sua própria história, no seu tempo.' },
@@ -63,11 +61,7 @@ onMounted(async () => {
     gsapContext = gsap.context(() => {
       const desktop = window.matchMedia('(min-width: 701px)').matches
       const st = { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.65, invalidateOnRefresh: true }
-      gsap.to('.portrait', { y: desktop ? -42 : -12, ease: 'none', scrollTrigger: st })
-      if (desktop) {
-        gsap.to('.ambient', { y: -20, ease: 'none', scrollTrigger: st })
-        gsap.to('.foreground', { y: -65, ease: 'none', scrollTrigger: st })
-      }
+      gsap.to('.photo-wrap', { y: desktop ? -22 : -7, ease: 'none', scrollTrigger: st })
     })
   } catch { /* O conteúdo continua visível sem as animações. */ }
 })
@@ -76,49 +70,12 @@ onBeforeUnmount(() => {
   gsapContext?.revert()
 })
 </script>
-
 <template>
-  <a class="skip" href="#inicio">Pular para o conteúdo</a>
-  <header class="masthead shell">
-    <a class="identity" href="#inicio" aria-label="Sara Vieira, voltar ao início" @click="menuOpen = false">
-      <span class="wordmark">SARA VIEIRA</span>
-      <span class="specialty">Psicanálise clínica e hipnose</span>
-    </a>
-    <nav class="desktop-nav" aria-label="Navegação principal">
-      <a href="#sobre">Sobre</a>
-      <a href="#atendimentos">Atendimentos</a>
-      <a href="#duvidas">Dúvidas</a>
-    </nav>
-    <a class="top-cta" :href="booking" target="_blank" rel="noopener noreferrer">Agendar consulta</a>
-    <button class="menu-toggle" type="button" :aria-expanded="menuOpen" aria-controls="menu-mobile" aria-label="Abrir ou fechar menu" @click="menuOpen = !menuOpen"><span></span><span></span></button>
-  </header>
-  <nav v-if="menuOpen" id="menu-mobile" class="mobile-nav" aria-label="Menu mobile">
-    <a href="#sobre" @click="menuOpen = false">Sobre a Sara</a>
-    <a href="#atendimentos" @click="menuOpen = false">Atendimentos</a>
-    <a href="#como-funciona" @click="menuOpen = false">Como funciona</a>
-    <a href="#duvidas" @click="menuOpen = false">Dúvidas frequentes</a>
-    <a :href="booking" target="_blank" rel="noopener noreferrer" @click="menuOpen = false">Agendar pelo WhatsApp ↗</a>
-  </nav>
-  <main id="inicio">
-    <section class="hero" aria-labelledby="titulo">
-      <div class="ambient" aria-hidden="true"></div>
-      <div class="hero-grid shell">
-        <div class="copy">
-          <p class="eyebrow">UM ESPAÇO PARA SE ESCUTAR</p>
-          <h1 id="titulo" class="headline"><span>Sua história</span> <span>merece um</span> <em>novo olhar</em></h1>
-          <span class="rule" aria-hidden="true"></span>
-          <p class="intro">Um espaço de escuta e acolhimento para compreender suas emoções e construir novos caminhos</p>
-          <a class="primary" :href="booking" target="_blank" rel="noopener noreferrer">Agendar minha consulta <svg aria-hidden="true" viewBox="0 0 30 16" fill="none"><path d="M0 8h28M21 1l7 7-7 7" stroke="currentColor" stroke-width="1.4"/></svg></a>
-        </div>
-        <div class="portrait-stage">
-          <div class="orbit" aria-hidden="true"></div>
-          <div class="portrait"><div class="photo-crop"><img :src="portraitUrl" width="1122" height="1402" alt="Retrato de Sara Vieira" fetchpriority="high" decoding="async"></div></div>
-        </div>
-        <div class="foreground" aria-hidden="true"></div>
-      </div>
-      <div class="shell"><div class="transition"><p>No seu tempo, um novo começo</p></div></div>
-    </section>
-
+  <div>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <SiteHeader />
+    <main id="conteudo">
+      <HeroSection />
     <section id="sobre" class="about section-light">
       <div class="shell about-grid">
         <div class="about-left reveal">
@@ -201,7 +158,8 @@ onBeforeUnmount(() => {
     </section>
   </main>
   <footer class="footer">
-    <div class="shell footer-top"><div><a href="#inicio" class="footer-name">SARA VIEIRA</a><p>Psicanalista clínica · Psicanálise e hipnose</p></div><div class="footer-links"><a href="#sobre">Sobre</a><a href="#atendimentos">Atendimentos</a><a href="#duvidas">Dúvidas</a><a href="https://www.instagram.com/psicanalista_saravieira/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a :href="booking" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></div></div>
+    <div class="shell footer-top"><div><a href="#conteudo" class="footer-name">SARA VIEIRA</a><p>Psicanalista clínica · Psicanálise e hipnose</p></div><div class="footer-links"><a href="#sobre">Sobre</a><a href="#atendimentos">Atendimentos</a><a href="#duvidas">Dúvidas</a><a href="https://www.instagram.com/psicanalista_saravieira/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a :href="booking" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></div></div>
     <div class="shell footer-bottom"><span>© {{ new Date().getFullYear() }} Sara Vieira. Todos os direitos reservados.</span><span>Um espaço de escuta no seu tempo.</span></div>
   </footer>
+  </div>
 </template>
