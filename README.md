@@ -1,31 +1,25 @@
 # Sara Vieira — Hero v1
 
-Primeira seção em HTML/CSS/JS, com layout desktop/mobile, paleta preto/âmbar/dourado e CTA WhatsApp. Escopo: somente Hero e faixa de transição; próximas seções ainda não implementadas.
+Hero responsiva em HTML/CSS/JS. Escopo: primeira seção e faixa de transição. Próximas seções ainda não implementadas.
 
-## Estado
+## Fotografia
 
-Código inicial salvo. Publicação pendente da fotografia. Ainda não validado visualmente em navegador: ambiente local indisponível durante a criação.
-
-## Fotografia necessária
-
-Adicionar na raiz `sara.jpg`: a captura original de 710 × 1536 px enviada pelo usuário, com o retrato circular de Sara. O CSS recorta o círculo em x≈120, y≈433, diâmetro≈465, escondendo a interface do telefone. Não adicionar a imagem do mockup como uma página inteira. Se usar uma foto original diferente, adaptar `.photo-crop img` para o enquadramento dela.
-
-Esta versão usa recorte da fotografia original, sem reconstrução de rosto por IA. O resultado deve ser conferido lado a lado com a direção visual aprovada.
+Imagem WebP de 2048 × 1152 enviada pelo usuário diretamente ao repositório. O CSS mostra os primeiros ~1014px horizontais, com proporção .88 e máscara nas bordas, ocultando os textos e CTA embutidos na metade direita da arte. Não há reconstrução de rosto no código. A imagem enviada difere da pose na prévia aprovada.
 
 ## Publicação
 
-Site estático, sem build. Vercel: framework Other, raiz do repositório, sem comando de build. Apenas publicar após incluir e verificar a foto. Prévia usa noindex; remover antes de lançar o site definitivo.
+Site estático sem build, framework Other. Vercel deve usar a raiz do repositório. Prévia contém noindex; remover para lançamento definitivo.
 
-## Movimento
+## Movimento e acessibilidade
 
-GSAP 3.12.5 + ScrollTrigger via CDN. Somente transform: fundo −20px, retrato −42px, frente −65px. Mobile: apenas retrato −12px. Sem pin. prefers-reduced-motion desativa animações. Conteúdo permanece visível caso a CDN não carregue. Dimensões reservadas para imagem; fontes externas precisam ter CLS avaliado no navegador.
+GSAP 3.12.5 + ScrollTrigger via CDN. Transform: fundo −20px, retrato −42px, frente −65px. Mobile: retrato −12px. Sem pin. prefers-reduced-motion desativa animações. Falha da CDN não esconde conteúdo. Dimensões reservadas para foto. Foco visível e link para pular ao conteúdo.
 
-Documentação: https://gsap.com/docs/v3/GSAP/gsap.matchMedia/
+Referência: https://gsap.com/docs/v3/GSAP/gsap.matchMedia/
 
 ## Contato
 
-WhatsApp 55 48 99674-2029, conforme a arte enviada. O destino dos links está configurado; entrega de mensagem e titularidade não foram verificadas.
+WhatsApp 55 48 99674-2029, da primeira referência do usuário. O telefone fictício da nova arte não foi usado. Links configurados; titularidade e entrega de mensagens não verificadas.
 
-## Validação disponível
+## Validação
 
-Script inline passou por análise sintática JavaScript. Ainda pendentes: renderização em desktop/mobile, enquadramento da foto, contraste, navegação por teclado, execução GSAP, estabilidade de layout e resposta HTTP dos assets. Não há testes de navegador concluídos.
+Imagem inspecionada e arquivo confirmado no GitHub. JavaScript passou por análise sintática. Ambiente local indisponível: testes visuais desktop/mobile, execução das animações, CLS e navegação por teclado permanecem pendentes.
