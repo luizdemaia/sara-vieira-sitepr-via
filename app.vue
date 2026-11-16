@@ -53,7 +53,8 @@ onMounted(async () => {
   } else {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'))
   }
-  if (reduced) return
+  // Em telas pequenas, evite carregar GSAP para o efeito sutil da foto.
+  if (reduced || window.matchMedia('(max-width: 700px)').matches) return
   try {
     const { gsap } = await import('gsap')
     const { ScrollTrigger } = await import('gsap/ScrollTrigger')
