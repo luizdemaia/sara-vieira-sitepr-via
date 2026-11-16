@@ -82,7 +82,14 @@ onBeforeUnmount(() => {
         <div class="about-left reveal">
           <span class="section-kicker"><span class="kicker-line"></span> SOBRE SARA VIEIRA</span>
           <h2 class="display-lg">A escuta é um <em>encontro</em> com você</h2>
-          <div class="about-art" aria-hidden="true"><span class="about-art-ring"></span><span class="about-art-leaf">✳</span><span class="about-art-text">cuidar de si<br>também é começar</span></div>
+          <div class="about-art about-art-editorial">
+            <img src="/images/sara-editorial-psicanalise.webp" width="400" height="500" loading="lazy" decoding="async" alt="Ilustração editorial de dois rostos em traços de gravura com uma espiral, símbolo de reflexão e autoconhecimento">
+            <div class="about-art-copy" aria-hidden="true">
+              <span class="about-art-eyebrow">ESCUTA · ACOLHIMENTO</span>
+              <span class="about-art-title">Olhar para <em>dentro.</em></span>
+            </div>
+            <span class="about-art-credit" aria-hidden="true">SARA VIEIRA <span>✳</span> PSICANÁLISE</span>
+          </div>
         </div>
         <div class="about-right reveal">
           <p class="intro-serif">Nem sempre é fácil colocar em palavras aquilo que sentimos.</p>
