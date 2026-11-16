@@ -1,0 +1,21 @@
+{
+  "name": "sara-vieira-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "nuxt": "3.17.5",
+    "vue": "3.5.13",
+    "vue-router": "4.5.0",
+    "gsap": "3.13.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3"
+  }
+}
