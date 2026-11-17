@@ -103,6 +103,16 @@ onMounted(async () => {
             }
           }
         )
+
+        // Instagram: o mockup cresce sutilmente à medida que entra na tela
+        gsap.fromTo('.ig-device', { scale: 0.91, y: 24 }, {
+          scale: 1.035, y: -10, ease: 'none',
+          scrollTrigger: {
+            trigger: '#instagram .ig-visual',
+            start: 'top 95%', end: 'bottom 25%',
+            scrub: 0.55, invalidateOnRefresh: true
+          }
+        })
         // Os desenhos dos serviços crescem à medida que os cards aparecem
         gsap.utils.toArray<HTMLElement>('.service-art').forEach(art => {
           const artwork = art.querySelector('.service-circle, .hypno-waves')
@@ -231,6 +241,66 @@ onBeforeUnmount(() => {
       <div class="shell faq-grid">
         <div class="faq-intro reveal"><span class="section-kicker"><span class="kicker-line"></span> DÚVIDAS FREQUENTES</span><h2 class="display-lg">Tudo começa com uma <em>conversa</em></h2><p>Algumas respostas para tornar o primeiro contato mais simples</p></div>
         <div class="faq-list reveal"><details v-for="(question, index) in questions" :key="question.q"><summary><span>{{ question.q }}</span><span class="faq-toggle" aria-hidden="true">+</span></summary><p>{{ question.a }}</p></details></div>
+      </div>
+    </section>
+
+
+    <!-- Instagram | ligação entre conteúdo e agendamento -->
+    <section id="instagram" class="ig-section section-light" aria-labelledby="instagram-title">
+      <div class="ig-halo" aria-hidden="true"></div>
+      <div class="shell ig-layout">
+        <div class="ig-copy reveal">
+          <span class="section-kicker"><span class="kicker-line"></span> CONHEÇA MAIS SOBRE A SARA</span>
+          <h2 id="instagram-title" class="display-lg">A conversa continua no <em>Instagram</em></h2>
+          <p class="ig-lead">Às vezes, uma reflexão é o primeiro passo para olhar para dentro</p>
+          <p class="ig-description">No perfil da Sara, você encontra vídeos, reflexões sobre ansiedade e autoconhecimento, além de momentos que ajudam a conhecer melhor quem está por trás da escuta</p>
+
+          <div class="ig-highlights" aria-label="Temas compartilhados no perfil">
+            <span><span aria-hidden="true">✳</span> Autoconhecimento</span>
+            <span><span aria-hidden="true">◌</span> Ansiedade</span>
+            <span><span aria-hidden="true">✦</span> Reflexões e vídeos</span>
+          </div>
+
+          <div class="ig-actions">
+            <a class="ig-cta" href="https://www.instagram.com/psicanalista_saravieira/" target="_blank" rel="noopener noreferrer" aria-label="Conhecer o Instagram de Sara Vieira em outra aba">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><circle cx="17.7" cy="6.5" r="1.1" fill="currentColor"/></svg>
+              <span>Conhecer o Instagram</span>
+              <span class="ig-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="ig-secondary" :href="booking" target="_blank" rel="noopener noreferrer">Agendar um atendimento <span aria-hidden="true">↗</span></a>
+          </div>
+          <span class="ig-handle">@psicanalista_saravieira</span>
+        </div>
+
+        <div class="ig-visual reveal">
+          <div class="ig-graphic-orbit" aria-hidden="true"></div>
+          <div class="ig-float ig-float-top" aria-hidden="true"><span>✳</span> Conexão antes do primeiro encontro</div>
+
+          <a class="ig-device" href="https://www.instagram.com/psicanalista_saravieira/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Instagram da Sara Vieira em outra aba">
+            <div class="ig-device-hardware" aria-hidden="true"></div>
+            <div class="ig-device-screen">
+              <div class="ig-screen-top">
+                <span class="ig-screen-mark" aria-hidden="true">◎</span>
+                <span class="ig-screen-handle">psicanalista_saravieira</span>
+                <span class="ig-screen-dots" aria-hidden="true">•••</span>
+              </div>
+              <div class="ig-screen-tabs" aria-hidden="true"><span>▦</span><span>▷</span><span>✧</span></div>
+              <div class="ig-photo-frame">
+                <img src="/images/sara-instagram-feed.webp" width="200" height="328" loading="lazy" decoding="async" alt="Prévia do feed real da Sara no Instagram, com publicações sobre ansiedade, autoconhecimento e sua rotina">
+              </div>
+              <div class="ig-device-bottom" aria-hidden="true"><span>⌂</span><span>⌕</span><span>＋</span><span>♡</span><span>◉</span></div>
+            </div>
+          </a>
+
+          <div class="ig-float ig-float-bottom" aria-hidden="true"><span class="ig-float-spark">✦</span><span>Uma forma de conhecer<br>mais a Sara</span></div>
+          <p class="ig-preview-note">Prévia do perfil enviada como referência · o feed pode mudar</p>
+        </div>
+      </div>
+      <div class="ig-marquee" aria-hidden="true">
+        <div class="ig-marquee-track">
+          <span>REFLEXÕES <b>✳</b> AUTOCONHECIMENTO <b>✳</b> ESCUTA <b>✳</b> CONEXÃO <b>✳</b> </span>
+          <span>REFLEXÕES <b>✳</b> AUTOCONHECIMENTO <b>✳</b> ESCUTA <b>✳</b> CONEXÃO <b>✳</b> </span>
+        </div>
       </div>
     </section>
 
