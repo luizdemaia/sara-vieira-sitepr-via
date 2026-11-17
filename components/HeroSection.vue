@@ -6,8 +6,8 @@ import { brand } from '~/data/brand'
  <div class="hero-copy">
   <p class="eyebrow">Escuta, acolhimento<br>e autoconhecimento</p>
   <span class="small-rule" aria-hidden="true"></span>
-  <h1 id="hero-title">Um espaço para<br class="desktop-break"> ouvir a <em>sua história.</em></h1>
-  <p class="intro">Atendimentos online e presenciais,<br class="desktop-break"> com Sara Vieira.</p>
+  <h1 id="hero-title">Um espaço para<br class="desktop-break"> ouvir a <em>sua história</em></h1>
+  <p class="intro">Atendimentos online e presenciais,<br class="desktop-break"> com Sara Vieira</p>
   <a class="primary-cta inline-flex items-center justify-between" :href="brand.whatsapp" target="_blank" rel="noopener noreferrer">
    <span>Agendar pelo WhatsApp</span>
    <svg aria-hidden="true" width="25" height="18" viewBox="0 0 25 18" fill="none"><path d="M1 9h22M16 2l7 7-7 7" stroke="currentColor" stroke-width="1.4"/></svg>

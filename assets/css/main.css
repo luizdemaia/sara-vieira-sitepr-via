@@ -319,3 +319,106 @@ body { overflow-x: clip; }
   #sobre .about-art-title { font-size: 31px; }
   #sobre .about-art-credit { left: 20px; font-size: 7px; }
 }
+
+
+
+/* Finalização visual | transições e microinterações (sem layout shift) */
+/* A página nunca esconde conteúdo caso o visitante bloqueie JavaScript */
+html:not(.motion-ready) .reveal:not(.revealed) {
+  opacity: 1 !important;
+  transform: none !important;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.motion-ready .reveal {
+    transition: opacity .82s cubic-bezier(.2,.68,.2,1),
+                transform .82s cubic-bezier(.2,.68,.2,1);
+  }
+  html.motion-ready .reveal:not(.revealed) {
+    opacity: 0;
+    transform: translate3d(0,30px,0);
+  }
+  html.motion-ready .service-card.reveal:not(.revealed),
+  html.motion-ready .format-card.reveal:not(.revealed) {
+    transform: translate3d(0,35px,0) scale(.975);
+  }
+  html.motion-ready .reveal.revealed {
+    opacity: 1;
+    transform: translate3d(0,0,0) scale(1);
+  }
+  html.motion-ready .services-grid .service-card:nth-child(2),
+  html.motion-ready .formats-grid .format-card:nth-child(3) {
+    transition-delay: 100ms;
+  }
+  /* Zoom suave na arte somente depois de chegar à seção */
+  #sobre .about-art-editorial > img,
+  .service-circle,
+  .hypno-waves {
+    transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .7s ease;
+  }
+  /* Os botões mantêm o clique, animando apenas o ícone */
+  .primary-cta svg, .primary svg,
+  .dark-cta > span, .service-content a > span,
+  .text-link > span {
+    transition: transform .33s cubic-bezier(.2,.7,.2,1);
+  }
+  .service-card,
+  .format-card {
+    transition: background-color .38s ease, border-color .38s ease,
+                box-shadow .38s ease, transform .48s cubic-bezier(.2,.7,.2,1);
+  }
+  .value-item, .journey-step, .faq-list summary,
+  .footer-links a {
+    transition: color .25s ease, background-color .3s ease, border-color .3s ease;
+  }
+}
+@media (hover: hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  #sobre .about-art-editorial:hover > img { transform:scale(1.065); filter: brightness(1.045); }
+  #sobre .about-art-editorial:hover { box-shadow:18px 20px 0 #e2d3bf; }
+  #sobre .about-art-editorial { transition:box-shadow .35s ease; }
+  .service-card.revealed:hover, .format-card.revealed:hover {
+    transform: translate3d(0,-7px,0) scale(1.012) !important;
+    box-shadow: 0 26px 50px rgba(15,8,5,.16);
+  }
+  .service-card:hover { border-color: #c9a779; background-color: #3a2b20; }
+  .service-card:hover .service-circle {
+    transform: rotate(-9deg) scale(1.065);
+  }
+  .service-card:hover .hypno-waves { transform: scale(1.07) rotate(5deg); }
+  .format-card:hover { border-color:#b38c60; background-color:#fff8ed; }
+  .primary-cta:hover svg, .primary:hover svg,
+  .dark-cta:hover > span, .service-content a:hover > span,
+  .text-link:hover > span { transform:translateX(6px); }
+  .value-item:hover .value-mark { color:#6e4230; }
+  .journey-step:hover .step-glyph { background:#efe0cb; border-color:#936b45; }
+  .faq-list summary:hover { color:#975c3b; }
+  .footer-links a:hover { color:#fff1d9; }
+}
+@media (max-width:700px) and (prefers-reduced-motion:no-preference) {
+  /* Mobile: um fade mais curto, sem deslocamento grande nem zoom ao toque */
+  html.motion-ready .reveal {
+    transition: opacity .52s ease-out, transform .52s ease-out;
+  }
+  html.motion-ready .reveal:not(.revealed) {
+    opacity: 0;
+    transform: translate3d(0,13px,0);
+  }
+  html.motion-ready .service-card.reveal:not(.revealed),
+  html.motion-ready .format-card.reveal:not(.revealed) {
+    transform: translate3d(0,13px,0);
+  }
+  html.motion-ready .services-grid .service-card:nth-child(2),
+  html.motion-ready .formats-grid .format-card:nth-child(3) {
+    transition-delay: 0ms;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal:not(.revealed), .service-card, .format-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  #sobre .about-art-editorial > img, .service-circle, .hypno-waves,
+  .primary-cta svg, .primary svg, .text-link > span {
+    transition: none !important;
+  }
+}
