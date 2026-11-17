@@ -63,18 +63,81 @@ onMounted(async () => {
   } else {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'))
   }
-  // Em telas pequenas, evite carregar GSAP para o efeito sutil da foto.
-  if (reduced || window.matchMedia('(max-width: 700px)').matches) return
+  // Scroll-linked zoom: movimento perceptível também no mobile.
+  // Respeita a preferência de acessibilidade por movimento reduzido.
+  if (reduced) return
   try {
     const { gsap } = await import('gsap')
     const { ScrollTrigger } = await import('gsap/ScrollTrigger')
     gsap.registerPlugin(ScrollTrigger)
     gsapContext = gsap.context(() => {
-      const desktop = window.matchMedia('(min-width: 701px)').matches
-      const st = { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.65, invalidateOnRefresh: true }
-      gsap.to('.photo-wrap', { y: desktop ? -22 : -7, ease: 'none', scrollTrigger: st })
+      const mobile = window.matchMedia('(max-width: 700px)').matches
+      if (mobile) {
+        // A fotografia se aproxima gradualmente conforme a Hero sai da tela
+        gsap.fromTo('.photo-wrap img',
+          { scale: 1.02 },
+          {
+            scale: 1.18,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.hero',
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 0.55,
+              invalidateOnRefresh: true
+            }
+          }
+        )
+        // A arte editorial ganha zoom real, acompanhando a rolagem
+        gsap.fromTo('#sobre .about-art-editorial > img',
+          { scale: 1.01 },
+          {
+            scale: 1.24,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '#sobre .about-art-editorial',
+              start: 'top 88%',
+              end: 'bottom 18%',
+              scrub: 0.55,
+              invalidateOnRefresh: true
+            }
+          }
+        )
+        // Os desenhos dos serviços crescem à medida que os cards aparecem
+        gsap.utils.toArray<HTMLElement>('.service-art').forEach(art => {
+          const artwork = art.querySelector('.service-circle, .hypno-waves')
+          if (!artwork) return
+          gsap.fromTo(artwork,
+            { scale: 0.86 },
+            {
+              scale: 1.14,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: art,
+                start: 'top 92%',
+                end: 'bottom 22%',
+                scrub: 0.55,
+                invalidateOnRefresh: true
+              }
+            }
+          )
+        })
+      } else {
+        gsap.to('.photo-wrap', {
+          y: -28,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.65,
+            invalidateOnRefresh: true
+          }
+        })
+      }
     })
-  } catch { /* O conteúdo continua visível sem as animações. */ }
+    ScrollTrigger.refresh()
+  } catch { /* Sem animações, a página e os botões seguem utilizáveis. */ }
 })
 onBeforeUnmount(() => {
   revealObserver?.disconnect()
